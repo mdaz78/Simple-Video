@@ -14,6 +14,10 @@ export default class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.onTermSubmit('mac');
+  }
+
   onTermSubmit = async (term) => {
     const response = await youtube.get('/search', {
       params: {
@@ -23,6 +27,7 @@ export default class App extends Component {
 
     this.setState({
       videos: response.data.items,
+      selectedVideo: response.data.items[0],
     });
   };
 
