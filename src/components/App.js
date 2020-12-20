@@ -9,6 +9,7 @@ export default class App extends Component {
 
     this.state = {
       videos: [],
+      selectedVideo: null,
     };
   }
 
@@ -24,13 +25,17 @@ export default class App extends Component {
     });
   };
 
+  onVideoSelect = (video) => {
+    this.setState({ selectedVideo: video });
+  };
+
   render() {
     const { videos } = this.state;
 
     return (
       <div className='ui container m-top-3'>
         <SearchBar onTermSubmit={this.onTermSubmit} />
-        <VideoList videos={videos} />
+        <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
       </div>
     );
   }
