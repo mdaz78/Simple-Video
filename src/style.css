@@ -5,3 +5,13 @@
 .m-top-3 {
   margin-top: 3%;
 }
+
+.video-item {
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer;
+}
+
+.video-item.item img {
+  width: 180px;
+}
