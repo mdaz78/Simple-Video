@@ -3,6 +3,7 @@ import SearchBar from './SearchBar';
 import youtube from '../apis/youtube';
 import VideoList from '../components/VideoList';
 import VideoDetail from './VideoDetail';
+import Loader from './Loader';
 
 export default class App extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class App extends Component {
     this.state = {
       videos: [],
       selectedVideo: null,
+      loading: true,
     };
   }
 
@@ -28,6 +30,7 @@ export default class App extends Component {
     this.setState({
       videos: response.data.items,
       selectedVideo: response.data.items[0],
+      loading: false,
     });
   };
 
@@ -36,7 +39,11 @@ export default class App extends Component {
   };
 
   render() {
-    const { videos, selectedVideo } = this.state;
+    const { videos, selectedVideo, loading } = this.state;
+
+    if (loading) {
+      return <Loader />;
+    }
 
     return (
       <div className='ui container m-top-3'>
